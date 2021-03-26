@@ -36,70 +36,70 @@ class Router {
     }
 
     handle(conditions, handler) {
-        // @ts-expect-error ts-migrate(2551) FIXME: Property 'routes' does not exist on type 'Router'.... Remove this comment to see the full error message
+        // @ts-expect-error (2551) FIXME: Property 'routes' does not exist on type 'Router'
         this.routes.push({
-            // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'conditions' implicitly has an 'any' typ... Remove this comment to see the full error message
+            // @ts-expect-error (7006) FIXME: Parameter 'conditions' implicitly has an 'any' type
             conditions,
-            // @ts-expect-error ts-migrate(2551) FIXME: Property 'routes' does not exist on type 'Router'.... Remove this comment to see the full error message
+            // @ts-expect-error (2551) FIXME: Property 'routes' does not exist on type 'Router'
             handler,
         })
         return this
     }
 
     connect(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Connect, Path(url)], handler)
     }
 
     delete(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Delete, Path(url)], handler)
     }
 
     get(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Get, Path(url)], handler)
     }
 
     head(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Head, Path(url)], handler)
     }
 
     options(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Options, Path(url)], handler)
     }
 
     patch(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Patch, Path(url)], handler)
     }
 
     post(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Post, Path(url)], handler)
     }
 
     put(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Put, Path(url)], handler)
     }
 
     trace(url, handler) {
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'url' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         return this.handle([Trace, Path(url)], handler)
     }
 
     all(handler) {
         return this.handle([], handler)
-    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'handler' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
     }
 
     route(req) {
         const route = this.resolve(req)
 
-        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'req' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'url' implicitly has an 'any' type.
         if (route) {
             return route.handler(req)
         }
@@ -119,10 +119,10 @@ class Router {
      */
     resolve(req) {
         return this.routes.find(r => {
-            // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'req' implicitly has an 'any' type.
+        // @ts-expect-error (7006) FIXME: Parameter 'req' implicitly has an 'any' type.
             if (!r.conditions || (Array.isArray(r) && !r.conditions.length)) {
                 return true
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'conditions' does not exist on type 'any[... Remove this comment to see the full error message
+            // @ts-expect-error (2339) FIXME: Property 'conditions' does not exist on type 'any'
             }
 
             if (typeof r.conditions === 'function') {
@@ -134,5 +134,5 @@ class Router {
     }
 }
 
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'c' implicitly has an 'any' type.
+// @ts-expect-error (7006) FIXME: Parameter 'c' implicitly has an 'any' type.
 module.exports = Router
