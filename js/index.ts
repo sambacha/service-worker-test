@@ -1,4 +1,4 @@
-// @ts-expect-error ts-migrate(2306) FIXME: File '/Users/sbacha/sybil/sybil-verifier-worker-ve... Remove this comment to see the full error message
+// @file service worker
 import Router from './router'
 import { handleVerify } from './handlers/verify'
 import { handleVerifiableCredential } from './handlers/verifiableCredential.js'
@@ -57,12 +57,12 @@ const PROXY_ENDPOINT = '/api'
 
 addEventListener('fetch', event => {
     const request = event.request
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'request' does not exist on type 'Event'.
+    // FIXME: Property 'request' does not exist on type 'Event'.
     const url = new URL(request.url)
     if (url.pathname.startsWith(PROXY_ENDPOINT)) {
         if (request.method === 'OPTIONS') {
             // Handle CORS preflight requests
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'respondWith' does not exist on type 'Eve... Remove this comment to see the full error message
+            // FIXME: Property 'respondWith' does not exist on type 'Event'
             event.respondWith(handleOptions(request))
         } else if (
             request.method === 'GET' ||
@@ -70,11 +70,11 @@ addEventListener('fetch', event => {
             request.method === 'POST'
         ) {
             // Handle requests to the API server
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'respondWith' does not exist on type 'Eve... Remove this comment to see the full error message
+            // @ts(2339) FIXME: Property 'respondWith' does not exist on type 'Event'
             event.respondWith(handleRequest(request))
         } else {
             event.respondWith(
-                // @ts-expect-error ts-migrate(2339) FIXME: Property 'respondWith' does not exist on type 'Eve... Remove this comment to see the full error message
+                // @ts(2339) FIXME: Property 'respondWith' does not exist on type 'Event'
                 new Response(null, {
                     status: 405,
                     statusText: 'Method Not Allowed',
