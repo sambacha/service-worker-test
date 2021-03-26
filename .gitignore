@@ -1,0 +1,8 @@
+node_modules/
+.cargo-ok
+package-lock.json
+wrangler.toml
+target/
+worker/worker.js
+worker/generated
+build/
